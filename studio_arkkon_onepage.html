@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Studio Ark.Kon — Regularização & Projetos</title>
+  <meta name="description" content="Studio Ark.Kon — Habite-se, Regularização, Projetos de arquitetura, modelagem 3D e legalizações." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='15' fill='%231a2b4a'/><text x='50' y='57' font-size='48' text-anchor='middle' fill='%23ffd166' font-family='Arial'>A</text></svg>">
+  <style>
+    :root{
+      --navy:#0f2a44; /* azul escuro */
+      --mustard:#d4a11a; /* mostarda */
+      --white:#ffffff;
+      --muted:#6b7b8c;
+      --card-bg: #f8f9fb;
+      --max-width:1100px;
+      --radius:14px;
+      --glass: rgba(255,255,255,0.06);
+      --shadow: 0 6px 20px rgba(11,20,30,0.12);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,#fff 0%, #fbfdff 100%);color:var(--navy);-webkit-font-smoothing:antialiased}
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{position:sticky;top:0;backdrop-filter:blur(6px);background:rgba(255,255,255,0.7);border-bottom:1px solid rgba(15,42,68,0.06);z-index:40}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo .mark{width:48px;height:48px;border-radius:10px;background:var(--navy);display:grid;place-items:center;color:var(--mustard);font-weight:800}
+    nav ul{display:flex;gap:20px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{color:var(--navy);text-decoration:none;font-weight:600}
+    .cta{background:var(--mustard);color:var(--navy);padding:10px 16px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+    .cta:hover{transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;padding:70px 0}
+    .hero h1{font-size:38px;margin:0;line-height:1.05}
+    .hero p{color:var(--muted);margin-top:16px;font-size:16px}
+    .hero .hero-card{background:var(--card-bg);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+
+    /* Sections */
+    section{padding:64px 0}
+    h2{font-size:22px;margin:0 0 18px 0}
+    .muted{color:var(--muted)}
+
+    /* About */
+    .about{display:flex;gap:30px;align-items:center}
+    .about .text{flex:1}
+    .about .image{width:320px;height:220px;border-radius:12px;background:linear-gradient(135deg,var(--navy),#163a5c);display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:700}
+
+    /* Services */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, #fff, #fbfdff);padding:18px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(15,42,68,0.04)}
+    .card h3{margin:0 0 8px 0}
+    .card p{margin:0;color:var(--muted)}
+
+    /* Portfolio */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .portfolio-item{border-radius:10px;overflow:hidden;background:#eee;min-height:160px;display:block;position:relative}
+    .portfolio-item img{width:100%;height:100%;object-fit:cover;display:block}
+    .portfolio-item .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.28));display:flex;align-items:flex-end;padding:12px;color:#fff}
+
+    /* Contact */
+    .contact-card{max-width:760px;margin:0 auto;background:var(--navy);color:var(--white);padding:26px;border-radius:12px;box-shadow:var(--shadow)}
+    .contact-row{display:flex;gap:14px}
+    .contact-row input, .contact-row textarea{flex:1;padding:12px;border-radius:8px;border:0}
+    .contact-row input{background:rgba(255,255,255,0.95);color:var(--navy)}
+    .contact-row textarea{min-height:110px;resize:vertical}
+    .contact-actions{display:flex;justify-content:flex-end;margin-top:12px}
+    .btn-primary{background:var(--mustard);color:var(--navy);border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+
+    /* Footer */
+    footer{padding:24px 0;border-top:1px solid rgba(15,42,68,0.06);color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      nav ul{display:none}
+    }
+    @media (max-width:640px){
+      .grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .about{flex-direction:column}
+      .nav{height:64px}
+    }
+
+    /* subtle hover / focus */
+    a:focus,a:hover{outline:none}
+    .card:hover{transform:translateY(-6px);transition:transform .28s ease}
+    .portfolio-item:hover{transform:translateY(-6px);transition:transform .28s ease}
+
+    /* small utility */
+    .lead{color:var(--muted);font-size:15px}
+    .badge{display:inline-block;background:var(--mustard);color:var(--navy);padding:6px 10px;border-radius:999px;font-weight:700}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="mark" aria-hidden>AK</div>
+        <div>
+          <div style="font-size:14px">Studio</div>
+          <div style="font-size:16px;letter-spacing:0.6px">Ark.Kon</div>
+        </div>
+      </div>
+
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#portfolio">Portfólio</a></li>
+          <li><a href="#contact" class="cta">Fale Conosco</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div>
+        <div class="badge">Regularização & Projetos</div>
+        <h1 class="reveal">Transformamos processos técnicos em projetos claros — do Habite-se à modelagem 3D.</h1>
+        <p class="lead reveal">Studio Ark.Kon: regularização de imóveis, averbação, CNO/CAEPF, projetos personalizados e modelos 3D para visualização realista. Entrega técnica e apresentação sofisticada.</p>
+        <div style="margin-top:18px">
+          <a href="#contact" class="cta">Fale Conosco</a>
+        </div>
+
+        <div style="margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <div class="hero-card reveal">
+            <strong>Habite-se & Regularização</strong>
+            <p class="muted" style="margin-top:8px">Apoio completo para emissão de Habite-se, CNO, CAEPF e averbações.</p>
+          </div>
+          <div class="hero-card reveal">
+            <strong>Projetos & 3D</strong>
+            <p class="muted" style="margin-top:8px">Plantas técnicas, projetos executivos e modelos 3D para apresentação ao cliente e aprovações.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-aside">
+        <div class="image reveal">
+          <svg width="140" height="110" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <rect width="200" height="140" rx="10" fill="white" />
+            <path d="M10 120 L60 20 L120 60 L190 10" stroke="#0f2a44" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="about reveal">
+        <div class="text">
+          <h2>Sobre o Studio Ark.Kon</h2>
+          <p class="muted">Somos um escritório especializado em regularização e projetos arquitetônicos com atenção técnica e estética. Atuamos na interface entre o processo documental (habite-se, CNO/CAEPF e averbação) e a entrega de projetos completos — desde o desenho técnico até a modelagem 3D para apresentação.</p>
+        </div>
+        <div class="image reveal" aria-hidden>
+          <div style="text-align:center;padding:18px">Studio Ark.Kon</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>Serviços</h2>
+      <div class="grid reveal">
+        <article class="card">
+          <h3>Habite-se e Regularização</h3>
+          <p>Assistência para emissão de habite-se, conferência de plantas, relação com órgãos municipais e preparação de documentação técnica.</p>
+        </article>
+        <article class="card">
+          <h3>Averbação na Matrícula</h3>
+          <p>Procedimentos para averbação de obras e alterações na matrícula do imóvel — acompanhamento e protocolo.</p>
+        </article>
+        <article class="card">
+          <h3>Legalizações CNO / CAEPF</h3>
+          <p>Regularização junto à Receita Federal: inscrição no CNO, CAEPF e demais obrigações técnicas e fiscais para obras.</p>
+        </article>
+
+        <article class="card">
+          <h3>Projetos de Arquitetura</h3>
+          <p>Projetos residenciais e comerciais personalizados, com foco em funcionalidade e estética contemporânea.</p>
+        </article>
+        <article class="card">
+          <h3>Plantas Técnicas</h3>
+          <p>Plantas, cortes e detalhamentos prontos para aprovação e execução.</p>
+        </article>
+        <article class="card">
+          <h3>Modelos 3D / Visualização</h3>
+          <p>Modelagem e renderizações para demonstrar o resultado final ao cliente e às instâncias aprovadoras.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2>Portfólio</h2>
+      <p class="muted">Selecionamos alguns projetos modelo para referência visual. Substitua as imagens por seus próprios renders quando desejar.</p>
+
+      <div class="portfolio-grid reveal" style="margin-top:18px">
+        <a class="portfolio-item" href="#" aria-label="Projeto 1">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Projeto 1 - modelagem 3D">
+          <div class="overlay"><div>Projeto Residencial — Visualização 3D</div></div>
+        </a>
+        <a class="portfolio-item" href="#" aria-label="Projeto 2">
+          <img src="https://images.unsplash.com/photo-1505691723518-36a0c3d3b8b4?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Projeto 2 - planta técnica">
+          <div class="overlay"><div>Legalização & Averbação — Antes / Depois</div></div>
+        </a>
+        <a class="portfolio-item" href="#" aria-label="Projeto 3">
+          <img src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=800&auto=format&fit=crop&s=placeholder" alt="Projeto 3 - render">
+          <div class="overlay"><div>Projeto Executivo — Planta e Corte</div></div>
+        </a>
+      </div>
+
+    </section>
+
+    <section id="contact">
+      <h2>Fale Conosco</h2>
+      <div class="contact-card reveal">
+        <form id="contactForm">
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <input type="text" name="name" placeholder="Seu nome" required aria-label="Seu nome">
+            <input type="email" name="email" placeholder="Seu e-mail" required aria-label="Seu e-mail">
+            <input type="text" name="subject" placeholder="Assunto (ex: Regularização)" aria-label="Assunto">
+          </div>
+          <div style="margin-top:12px">
+            <textarea name="message" placeholder="Descreva seu projeto ou dúvida" required aria-label="Mensagem"></textarea>
+          </div>
+
+          <div class="contact-actions">
+            <button type="submit" class="btn-primary">Enviar mensagem</button>
+          </div>
+          <p style="margin-top:10px;font-size:13px;color:rgba(255,255,255,0.82)">Ao enviar, o formulário abrirá seu cliente de e-mail (fallback) para completar o envio. Para integração com formulários profissionais, posso configurar Formspree, Netlify Forms ou webhook.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <strong>Studio Ark.Kon</strong> — Todos os direitos reservados</div>
+      <div class="muted">Desenvolvido com atenção técnica e design elegante</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple scroll reveal using IntersectionObserver
+    (function(){
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.style.opacity=1;
+            e.target.style.transform='translateY(0)';
+            e.target.style.transition='all 600ms cubic-bezier(.2,.9,.2,1)';
+            io.unobserve(e.target);
+          }
+        })
+      },{threshold:0.12});
+      reveals.forEach(r=>{
+        r.style.opacity=0; r.style.transform='translateY(10px)';
+        io.observe(r);
+      });
+    })();
+
+    // Contact form fallback: open mailto with prefilled content
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const form = e.target;
+      const name = encodeURIComponent(form.name.value.trim());
+      const email = encodeURIComponent(form.email.value.trim());
+      const subject = encodeURIComponent(form.subject.value.trim() || 'Contato via site - Studio Ark.Kon');
+      const message = encodeURIComponent(form.message.value.trim());
+      const body = encodeURIComponent(`Nome: ${decodeURIComponent(name)}\nEmail: ${decodeURIComponent(email)}\n\nMensagem:\n${decodeURIComponent(message)}`);
+
+      const mailto = `mailto:contato@studioarkkon.com?subject=${subject}&body=${body}`;
+      // open mailto in a new window/tab to avoid blocking
+      window.location.href = mailto;
+    });
+
+    // Small accessibility: focus visible for keyboard users
+    (function(){
+      const body = document.body;
+      function handleFirstTab(e) {
+        if(e.key === 'Tab'){
+          body.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>
